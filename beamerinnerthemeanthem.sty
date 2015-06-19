@@ -1,0 +1,100 @@
+\mode<presentation>
+
+% Title page
+
+\newlength{\titleheight}
+\newlength{\righttitleindent}
+\setlength{\righttitleindent}{10pt}
+\setbeamerfont{title}{size=\LARGE\setlength{\baselineskip}{18pt}}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{part title}{size=\LARGE}
+
+\defbeamertemplate*{title page}{anthem}[1][]
+{
+ \begin{beamercolorbox}[sep=0pt, wd=\paperwidth]{title page header}
+  \begin{tikzpicture}[remember picture, overlay]
+  
+  \coordinate (titlepos) at ([yshift=.4\paperheight]current page.south east);
+  
+  \node[anchor=south east, inner sep = 8pt, xshift=-\righttitleindent,
+  execute at begin node={\begin{varwidth}{.75\paperwidth}\raggedleft},
+  execute at end node={\end{varwidth}}] (title) at (titlepos) {
+  	\usebeamerfont{title}\inserttitle\par%
+  	\ifx\insertsubtitle\@empty%
+  	  \else
+  	 	\\[6pt]{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}%
+  	\fi};
+  
+  % get height of title node	
+  \getheightofnode{\titleheight}{title}
+  
+  \begin{scope}[on background layer]
+    \fill[maindark] (titlepos) -- (title.south west) -- ([xshift=-0.577\titleheight]title.north west) -- ([yshift=\titleheight+.4\paperheight]current page.south west) -- (current page.north west) -- (current page.north east);
+    \fill[maindark!60!white] (title.south west) -- ([xshift=-0.577\titleheight]title.north west) -- ([yshift=\titleheight+.4\paperheight]current page.south west) -- ([yshift=.4\paperheight]current page.south west);
+  \end{scope}
+  
+  \end{tikzpicture}
+ \end{beamercolorbox}
+ \begin{tikzpicture}[remember picture, overlay]
+ 	\node[anchor=north east, inner sep = 8pt, xshift=-\righttitleindent,yshift=-6pt] (author) at (titlepos){
+ 	  \begin{beamercolorbox}[wd=0.7\paperwidth, right, sep=0pt]{author}
+ 	    \insertauthor
+ 	  \end{beamercolorbox}};
+ 	\node[anchor=north east, inner sep=8pt] (date) at (author.south east) {
+ 	  \begin{beamercolorbox}[wd=0.7\paperwidth, right, sep=0pt]{author}
+ 	    \insertdate
+ 	  \end{beamercolorbox}};
+ 	\ifx\inserttitlegraphic\@empty%
+ 	  \else
+ 	  \node[anchor=north east, inner sep=8pt] (graphic) at (date.south east) {
+ 	   	  \inserttitlegraphic};
+ 	\fi 
+ \end{tikzpicture}
+}
+
+% Section page
+
+\defbeamertemplate*{section page}{anthem}[1][]
+{
+ \begin{beamercolorbox}[sep=0pt, wd=\paperwidth]{title page header}
+  \begin{tikzpicture}[remember picture, overlay]
+  
+  \coordinate (titlepos) at ([yshift=.2\paperheight]current page.south east);
+  
+  \node[anchor=south east, inner sep = 8pt, xshift=-\righttitleindent,
+  execute at begin node={\begin{varwidth}{.75\paperwidth}\raggedleft},
+  execute at end node={\end{varwidth}}] (title) at (titlepos) {
+  \if@specsec
+  	\usebeamerfont{section title}\@specsectitle\par
+  \else
+    \usebeamerfont{section title}Part \Roman{section}\par
+  \fi};
+  
+  % get height of title node	
+  \getheightofnode{\titleheight}{title}
+  
+  \begin{scope}[on background layer]
+    \fill[maindark] (titlepos) -- (title.south west) -- ([xshift=-0.577\titleheight]title.north west) -- ([yshift=\titleheight+.2\paperheight]current page.south west) -- (current page.north west) -- (current page.north east);
+    \fill[maindark!60!white] (title.south west) -- ([xshift=-0.577\titleheight]title.north west) -- ([yshift=\titleheight+.2\paperheight]current page.south west) -- ([yshift=.2\paperheight]current page.south west);
+  \end{scope}
+  
+  \node[anchor=north east, inner sep = 8pt, xshift=-\righttitleindent,yshift=-8pt] (author) at (titlepos){\usebeamercolor[fg]{part title}\usebeamerfont{part title}\insertsection};
+  
+  \if@secfig
+    \node at ([yshift=.65\paperheight]current page.south) {\@secfig};
+    \@secfigfalse
+  \fi  
+  
+  \end{tikzpicture}
+ \end{beamercolorbox}
+}
+
+%% Itemize
+
+\setbeamertemplate{itemize item}{\tiny\raise.5ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+\setbeamertemplate{itemize subitem}{\tiny\raise.4ex\hbox{\donotcoloroutermaths$\square$}}
+\setbeamertemplate{itemize subsubitem}{\tiny\raise.3ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+
+
+\mode
+<all>

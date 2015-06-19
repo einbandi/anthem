@@ -1,0 +1,41 @@
+\mode<presentation>
+
+% Frame title
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{framesubtitle}{size=\small}
+\defbeamertemplate*{frametitle}{anthem}[1][]
+{
+  \begin{tikzpicture}[remember picture, overlay]
+  \fill[maindark!60!white] (current page.north east) -- ([yshift=-1.4cm]current page.north east) -- ([yshift=-1.4cm]current page.north west) -- ([yshift=-.4cm]current page.north west);
+  \fill[maindark] ([yshift=-1.4cm]current page.north west) -- (current page.north west) -- (current page.north east) -- ([yshift=-.4cm]current page.north east) -- ([xshift=-.2\paperwidth+.577cm, yshift=-.4cm]current page.north east) -- ([xshift=-.2\paperwidth, yshift=-1.4cm]current page.north east);
+   \ifx\insertframesubtitle\@empty%
+      {\node[anchor=west, inner sep=0pt] at ([xshift=\Gm@lmargin, yshift=-0.8cm]current page.north west)
+      {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}
+       \insertframetitle\strut};
+      }
+   \else%
+      {\node[anchor=west, inner sep=0pt, align=left] at ([xshift=\Gm@lmargin, yshift=-0.8cm]current page.north west)
+      {%
+           \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+           \insertframetitle\strut\\[-4pt]%
+           \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+           \insertframesubtitle\strut\par};
+      }
+  \fi
+  \end{tikzpicture}
+  \vspace*{.8cm}
+}
+
+% Foot line
+\setbeamerfont{page number in foot}{size=\small}
+\defbeamertemplate*{footline}{anthem}[1][]{%
+  \begin{tikzpicture}
+  \useasboundingbox[fill=maindark!60!white, inner sep=0pt](0,0) rectangle(\paperwidth,.4);
+  \fill[maindark] (0,.2) -- (.85\paperwidth,.2) -- (.85\paperwidth+0.23cm,.6) -- (\paperwidth,.6) -- (\paperwidth, 0) -- (0,0);
+  \node[anchor=east, inner sep=0pt] at (.95\paperwidth,.25){%
+        \usebeamerfont{page number in foot}%
+        \usebeamercolor[fg]{page number in foot}\insertframenumber\strut};
+  \end{tikzpicture}
+}
+
+\mode<all>

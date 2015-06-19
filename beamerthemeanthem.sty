@@ -1,0 +1,68 @@
+\mode<presentation>
+
+% Requirement
+\RequirePackage{tikz}
+\RequirePackage{varwidth} % for title page
+\RequirePackage[framemethod=tikz]{mdframed} % for fancyblock environment
+
+\usetikzlibrary{calc, backgrounds, positioning}
+
+% macro to get height of tikz node
+% used on title and section pages to compute length required for the nicely shaped box
+\newcommand\getheightofnode[2]{%
+    \pgfextracty{#1}{\pgfpointanchor{#2}{north}}%
+    \pgfextracty{\pgf@xa}{\pgfpointanchor{#2}{south}}% \pgf@xa is a length defined by PGF for temporary storage. No need to create a new temporary length.
+    \addtolength{#1}{-\pgf@xa}%
+}
+
+% instead of redifining beamer's block, there is a new fancyblock environment
+\newenvironment{fancyblock}[2][]{
+\begin{mdframed}[
+hidealllines=true,
+backgroundcolor=mainlight!50!white,
+innertopmargin=1.5ex,
+innerbottommargin=1.5ex,
+innerleftmargin=8pt,
+skipabove=10pt,
+leftmargin=0pt,
+rightmargin=0pt,
+singleextra={
+  \coordinate (aux) at ( $ (O)!0.8!(P) $ );
+  \draw[line width=1.5pt, maindark] (O) -- ([yshift=18pt]O|-P) -- ([yshift=18pt]aux|-P) --
+  	([xshift=10.39pt]aux|-P) -- (P) -- (O-|P) -- cycle;
+  \filldraw[line width=1.5pt,maindark]
+    (O|-P) -- ([yshift=18pt]O|-P) -- ([yshift=18pt]aux|-P) -- ([xshift=10.39pt]aux|-P) -- cycle;
+  \node[anchor=west, inner sep=0pt, white] at ([xshift=8pt, yshift=8pt]O|-P)
+    {#2\strut} ; 
+  },
+  #1
+]\usebeamercolor[fg]{normal text}}{\end{mdframed}}
+
+% check if sectionpage is called for a specialsection
+\newif\if@specsec\@specsecfalse
+\newcommand{\@specsectitle}{}
+\newcommand{\specialsectionpage}[2]{%
+  \@specsectrue
+  \renewcommand{\@specsectitle}{#1}
+  \renewcommand{\insertsection}{#2}
+  \sectionpage
+  \@specsecfalse  
+}
+
+% check if a sectionfigure has been declared
+\newif\if@secfig\@secfigfalse
+\newcommand{\@secfig}{}
+\newcommand{\sectionfigure}[1]{%
+  \@secfigtrue
+  \renewcommand{\@secfig}{#1}
+}
+
+
+% Settings
+\useinnertheme{anthem}
+\useoutertheme{anthem}
+\usecolortheme{anthem}
+
+\setbeamertemplate{navigation symbols}{} 
+
+\mode<all>
