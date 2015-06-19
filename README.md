@@ -6,6 +6,9 @@ I make no restriction whatsoever on the output produced with the templates and o
 This bundle consists of the following files:
 
 beamerthemeanthem.sty
+
 beamerinnerthemeanthem.sty
+
 beamerouterthemeanthem.sty
+
 beamercolorthemeanthem.sty
