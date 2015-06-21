@@ -1,5 +1,5 @@
 # anthem
-A cutsom beamer theme with a sober and modern design based on simple geometric shapes.
+A custom beamer theme with a sober and modern design based on simple geometric shapes.
 Currently there is only one color theme (based on a dark blue), but more color themes are planned.
 
 There is a special section mechanism to declare unnumbered section that have their own custom section page (and are bookmarked in the PDF). Section title figures can be placed on all section title pages.
