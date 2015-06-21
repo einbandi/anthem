@@ -1,8 +1,8 @@
 # anthem
 A cutsom beamer theme with a sober and modern design based on simple geometric shapes.
-Currently there is only one color theme (based on a dark blue),but more color themes are planned.
+Currently there is only one color theme (based on a dark blue), but more color themes are planned.
 
-There is a special section mechanism to declare unnumbered section that have their own custom section page. Section title figures can be placed on all section title pages.
+There is a special section mechanism to declare unnumbered section that have their own custom section page (and are bookmarked in the PDF). Section title figures can be placed on all section title pages.
 
 A new fancyblock is provided as an alternative to beamer's block environment.
 
