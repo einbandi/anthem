@@ -4,6 +4,7 @@
 \RequirePackage{tikz}
 \RequirePackage{varwidth} % for title page
 \RequirePackage[framemethod=tikz]{mdframed} % for fancyblock environment
+\RequirePackage{bookmark}
 
 \usetikzlibrary{calc, backgrounds, positioning}
 
@@ -41,10 +42,15 @@ singleextra={
 % check if sectionpage is called for a specialsection
 \newif\if@specsec\@specsecfalse
 \newcommand{\@specsectitle}{}
-\newcommand{\specialsectionpage}[2]{%
+\newcommand{\@specsecaddon}{}
+\newcommand{\specialsection}[1]{%
+	\renewcommand{\@specsectitle}{#1}
+	\bookmark[page=\the\c@page,level=2]{#1}
+	}
+\newcommand{\specialsectionpage}[1]{%
   \@specsectrue
-  \renewcommand{\@specsectitle}{#1}
-  \renewcommand{\insertsection}{#2}
+  \renewcommand{\insertsection}{\@specsectitle}
+  \renewcommand{\@specsecaddon}{#1}
   \sectionpage
   \@specsecfalse  
 }

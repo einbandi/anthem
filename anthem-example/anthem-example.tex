@@ -1,8 +1,9 @@
 \documentclass{beamer}
 
 \usetheme{anthem}
-\usepackage{inconsolata}
-\usepackage[scale=.9]{FiraSans}
+\usepackage{lmodern}
+%\usepackage{inconsolata}
+%\usepackage[scale=.9]{FiraSans}
 
 \title{The \emph{anthem} presentation theme}
 \author{Andreas Hinterreiter}
@@ -41,21 +42,23 @@
 \end{columns}
 \end{frame}
 
+\specialsection{A special section}
+
 \begin{frame}[plain]
 \sectionfigure{\includegraphics[width=.75\textwidth]{section}}
-\specialsectionpage{Intermezzo}{A Special Section with a Figure}
+\specialsectionpage{Intermezzo}
 \end{frame}
 
-\begin{frame}{About the Special Sections}
+\begin{frame}[fragile]{About the Special Sections}
 \begin{itemize}
-	\item If you want to have a section title page with some other addition to the section title than the default "Part ..." (such as e.g.~"Aside" or "Intermezzo"), you can use the \texttt{\textbackslash{}specialsectionpage\{addition\}\{title\}} command.
-	\item You should not declare this "special section" with \texttt{\textbackslash{}section}, otherwise the \alert{numering might not be correct}.
-	\item Unfortunately this means, that the special section will not show up in your PDF reader's table of content. I hope I can soon implement this feature in a much nicer way.
+	\item You can declare an \alert{unnumbered special section} using the \verb+\specialsection+ command. This produces a PDF bookmark just like a normal section does.
+	\item These special sections have special section title pages created by the \verb+\specialsectionpage{type}+, where the "Part ..." is replaced by \texttt{type}.
+	\item Usually, \texttt{type} will be something like "Intermezzo" or "Aside".
 \end{itemize}
 \end{frame}
 
 
-\section*{An Ordinary Section}
+\section{An Ordinary Section}
 
 \begin{frame}[plain]
 \sectionpage
@@ -65,7 +68,7 @@
 \begin{columns}
 \column{.6\textwidth}
 	\begin{enumerate}
-		\item An item inside an \texttt{itemize} environment.
+		\item An item inside an \texttt{enumerate} environment.
 		\item Another item.
 		\begin{enumerate}
 			\item A Subitem.
